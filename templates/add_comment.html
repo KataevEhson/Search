@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Добавить комментарий</title>
+</head>
+<body class="fon">
+    <div class="menu">
+        <a class="menulink" href="/films/">Фильмы</a>
+        <a class="menulink" href="/comments/">Комментарии</a>
+        <a class="menulink" href="/ganr/">Жанры</a>
+        
+        <a class="menulink" href="/add_film/">Добавить фильм</a>
+        <a class="menulink" href="/add_comment/">Добавить комментарий</a>
+        <a class="menulink" href="/">Добавить жанр</a>
+    </div>
+    <form class="forma" method="POST">
+        {% csrf_token %}
+        <input class="pole" type="text" name="author" placeholder="name" required>
+
+        <input class="pole" type="text" name="text" placeholder="comment" required>
+        <select class="pole" name="film_id">
+            {% for i in films %}
+                <option value="{{i.id }}">{{ i.name }}</option>
+            {% endfor %}
+        </select>
+        <button class="knopka" type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

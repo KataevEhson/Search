@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Подробнее</title>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="fon">
+<a class="menulink" href="/ganr/">Назад</a>
+<div class="blok">
+<h1>{{ item.name }}</h1>
+<form method="POST" action="/del_ganr/{{ item.id }}/">
+    {% csrf_token %}
+    <button class="naiti" type="submit">Удалить</button>
+</form>
+</div>
+</body>
+</html>

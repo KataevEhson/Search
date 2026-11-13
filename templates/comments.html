@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Комментарии</title>
+</head>
+<body class="fon">
+    <div class="menu">
+        <a class="menulink" href="/films/">Фильмы</a>
+        <a class="menulink" href="/comments/">Комментарии</a>
+        <a class="menulink" href="/ganr/">Жанры</a>
+        <a class="menulink" href="/add_film/">Добавить фильм</a>
+        <a class="menulink" href="/add_comment/">Добавить комментарий</a>
+        <a class="menulink" href="/">Добавить жанр</a>
+    </div>
+        <form class="poisk" method="GET">
+        <input class="pole" type="text" name="q" placeholder="Текст комментария" value="{{ query }}">
+
+        <button class="naiti" type="submit">Найти</button>
+    </form>
+
+    <h1>Комментарии</h1>
+    {% for i in comments %}
+        <div class="blok">
+            <h2>{{ i.author }}</h2>
+            <p>{{ i.text }}</p>
+
+            <p>Фильм: {{ i.film_id.name }}</p>
+        <a class="menulink" href="/comment/{{ i.id }}/">Подробнее</a>
+        </div>
+    {% endfor %}
+</body>
+</html>

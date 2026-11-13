@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Фильмы</title>
+</head>
+<body class="fon">
+    <div class="menu">
+        <a class="menulink" href="/films/">Фильмы</a>
+        <a class="menulink" href="/comments/">Комментарии</a>
+        <a class="menulink" href="/ganr/">Жанры</a>
+        <a class="menulink" href="/add_film/">Добавить фильм</a>
+        <a class="menulink" href="/add_comment/">Добавить комментарий</a>
+        <a class="menulink" href="/">Добавить жанр</a>
+    </div>
+
+    <h1>Фильмы</h1>
+
+    <form class="poisk" method="GET">
+        <input class="pole" type="text" name="q" placeholder="Название фильма" value="{{ query }}">
+        
+        <button class="naiti" type="submit">Найти</button>
+    </form>
+    {% for i in films %}
+        <div class="blok">
+            <h2>{{ i.name }}</h2>
+
+            <p>{{ i.caption }}</p>
+            <p>Жанр: {{ i.ganr_id.name }}</p>
+                <img class="foto" src="{{ i.photo.url }}" alt="{{ i.name }}" width="250">
+        <a class="menulink" href="/film/{{ i.id }}/">Подробнее</a>
+        </div>
+    {% endfor %}
+
+
+
+</body>
+</html>

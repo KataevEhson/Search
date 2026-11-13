@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>Document</title>
+</head>
+<body class="fon">
+    <div class="menu">
+        <a class="menulink" href="/films/">Фильмы</a>
+        <a class="menulink" href="/comments/">Комментарии</a>
+        <a class="menulink" href="/ganr/">Жанры</a>
+        <a class="menulink" href="/add_film/">Добавить фильм</a>
+        <a class="menulink" href="/add_comment/">Добавить комментарий</a>
+        <a class="menulink" href="/">Добавить жанр</a>
+    </div>
+    
+<form class="forma" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input class="pole" type="text" name="name" placeholder="Name of film">
+    <input class="pole" type="text" name="caption" placeholder="caption">
+    <input class="pole" type="file" name="photo">
+<select class="pole" name="ganr_id">
+    {% for i in ganr %}
+        <option value="{{ i.id }}">{{ i.name }}</option>
+    {% endfor %}
+</select>
+
+    <button class="knopka" type="submit">Save</button>
+
+</form>
+
+</body>
+</html>
+                                     
